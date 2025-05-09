@@ -1,0 +1,728 @@
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'Interop';
+  src: url('https://cdn.jsdelivr.net/gh/payw-org/Interop/web/fonts/Interop-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IAMAPLAYER';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/IAMAPLAYER.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LeferiPoint-SpecialA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-SpecialA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cafe24Shiningstar';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #FFF8F5;
+}
+
+body {
+  color: #333;
+  padding-top: 0;
+}
+
+.page01 {
+  position: relative;
+  background-image: url('img/Section01.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  margin-bottom: 80px;
+  z-index: 1;
+}
+
+.page01::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.page01 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none !important;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+}
+
+
+.page01 header img {
+  width: 90px;
+  height: auto;
+  margin-right: 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.page01 nav ul {
+  display: flex;
+  gap: 100px;
+  list-style: none;
+}
+
+nav ul li a {
+  font-family: 'IAMAPLAYER', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s;
+  color: #333;
+}
+
+body.nav-color-white nav ul li a {
+  color: white;
+}
+
+nav ul li a:hover {
+  color: #f76c5e;
+}
+
+.page01 nav ul li:hover {
+  color: inherit;
+}
+
+.main_mant {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 3;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main_mant h1.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.main_mant h1.fade-up.animate {
+  animation: fadeUp 1s ease-out forwards;
+}
+
+.main_mant p.fade-up,
+.main_mant p.fade-up.animate {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
+}
+
+.main_mant h1 {
+  font-family: 'LeferiPoint-SpecialA';
+  font-size: 80px;
+  font-weight: 100;
+  position: relative;
+  color: rgba(255, 255, 255, 0.1);
+  animation: fadeUp 2s ease-out, shine 8s linear infinite;
+}
+
+.main_mant h1::before {
+  content: 'Bistro Megu';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,1), transparent);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
+}
+
+.main_mant p:first-of-type {
+  font-family: 'Interop', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 15px;
+}
+
+.main_mant p:nth-of-type(2) {
+  font-family: 'Interop', sans-serif;
+  font-size: 30px;
+  white-space: nowrap;
+  font-weight: 300;
+  margin-top: 3px;
+}
+
+.reservation-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 18px;
+  color: #f76c5e;
+  border: 2px solid #f76c5e;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.reservation-btn:hover {
+  background-color: #f76c5e;
+  color: white;
+}
+
+@keyframes shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 400px;
+  height: 550px;
+  border-radius: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #f76c5e;
+}
+
+.modal-title {
+  color: #000;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.modal-title .highlight {
+  color: #f76c5e;
+  font-family: 'LeferiPoint-SpecialA';
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.modal-content input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #f76c5e;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  width: fit-content;
+  align-self: center;
+}
+
+.page02 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 100px;
+}
+
+.content-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.content-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.sub_img, .sub_mant {
+  width: 50%;
+  height: auto;
+}
+
+.sub_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sub_mant {
+  font-family: 'Interop', sans-serif;
+  font-size: 18px;
+  color: #333;
+  text-align: left;
+  position: relative;
+}
+
+.sub_mant h2 {
+  font-family: 'LeferiPoint-SpecialA';
+  font-size: 32px;
+  font-weight: 700;
+  color: #f76c5e;
+  margin-bottom: 20px;
+  font-size: 60px;
+}
+
+.sub_mant p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #666;
+  font-family: 'Interop';
+}
+
+.page02 .sub_mant p {
+  color: #333;
+}
+
+.sub_mant p:first-of-type {
+  font-weight: 500;
+}
+
+.sub_mant p:nth-of-type(2) {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .content-block,
+  .content-block.reverse {
+    flex-direction: column;
+  }
+
+  .sub_img, .sub_mant {
+    width: 100%;
+  }
+
+  .sub_img img {
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive styles for page02 */
+  .page02 {
+    padding: 0 20px;
+  }
+
+  .sub_mant h2 {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .sub_mant p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .page02 .sub_mant p:nth-of-type(2) {
+    font-size: 16px;
+  }
+
+  .page02 .sub_img img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .page02 .content-block.second-pair {
+    flex-direction: column;
+  }
+  .page02 .content-block.second-pair .sub_mant {
+    position: static;
+    left: auto;
+  }
+}
+
+.page02 .content-block.second-pair .sub_mant {
+  position: relative;
+  left: 40px;
+}
+
+.page03 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  padding-bottom: 80px;
+}
+
+.page03 p, .page03 h3 {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.page03 p {
+  font-family: 'Cafe24Shiningstar', sans-serif;
+  font-size: 43px;
+  position: relative;
+  left: -150px;
+  top: 30px;
+}
+
+.page03 h3 {
+  font-family: 'LeferiPoint-SpecialA', sans-serif;
+  font-size: 60px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  color: #f76c5e;
+}
+
+.page03 .menu_img {
+  overflow: hidden;
+  width: 100%;
+}
+
+.page03 .menu_img-track {
+  display: flex;
+  gap: 20px;
+  animation: scrollSlide 18s linear infinite;
+}
+
+@keyframes scrollSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.page03 .menu_img img {
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 8px;
+  margin-bottom: 0;
+  will-change: transform;
+}
+
+.page03 .menu_img img:nth-of-type(odd) {
+  margin-top: 90px;
+}
+.page04 {
+  padding: 80px 100px;
+  background-color: #fff8f5;
+  text-align: center;
+}
+
+.page04 h2 {
+  font-family: 'LeferiPoint-SpecialA', sans-serif;
+  font-size: 60px;
+  color: #f76c5e;
+  margin-bottom: 20px;
+}
+
+.page04 p {
+  font-family: 'Interop', sans-serif;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 40px;
+}
+.footer {
+  background-color: #9B1D20;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  font-family: 'LeferiPoint-SpecialA', sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.footer .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer .social-links a {
+  font-family: 'Interop', sans-serif;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: #fff8f5;
+}
+.page01 .content-block,
+.page01 .sub_img {
+  display: none !important;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-slide-in {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeSlideIn 1s ease-out forwards;
+  will-change: transform, opacity;
+}
+.footer-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-icons img {
+  width: auto;
+  height: 40px;
+}
+.page01 .content-block,
+.page01 .sub_img {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .page01 header {
+    padding: 10px 20px;
+    flex-direction: row; /* Change from column to row for horizontal layout */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page01 header img {
+    width: 70px;
+    margin-right: 20px;
+  }
+
+  .page01 nav ul {
+    gap: 10px; /* Adjust spacing between menu items */
+    flex-direction: row; /* Ensure menu items are in a row */
+  }
+
+  .page01 nav ul li {
+    padding: 5px;
+  }
+
+  .main_mant h1 {
+    font-size: 40px;
+  }
+
+  .main_mant p:first-of-type {
+    font-size: 16px;
+  }
+
+  .main_mant p:nth-of-type(2) {
+    font-size: 20px;
+  }
+
+  .reservation-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .modal-content {
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 768px) {
+  .content-block,
+  .content-block.reverse {
+    flex-direction: column;
+  }
+
+  .sub_img, .sub_mant {
+    width: 100%;
+  }
+
+  .sub_img img {
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive styles for page02 */
+  .page02 {
+    padding: 0 20px;
+  }
+
+  .sub_mant h2 {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .sub_mant p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .page02 .sub_mant p:nth-of-type(2) {
+    font-size: 16px;
+  }
+
+  .page02 .sub_img img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .page02 .content-block.second-pair {
+    flex-direction: column;
+  }
+  .page02 .content-block.second-pair .sub_mant {
+    position: static;
+    left: auto;
+    text-align: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 768px) {
+  .page02 .content-block.second-pair .sub_mant {
+    position: static;
+    left: auto;
+    text-align: center;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .page03 {
+    padding: 40px 20px;
+  }
+
+  .page03 p {
+    font-size: 28px;
+    left: -90px;
+    top: 20px;
+    text-align: center;
+  }
+
+  .page03 h3 {
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  .page03 .menu_img-track {
+    gap: 10px;
+    animation-duration: 18s;
+  }
+
+  .page03 .menu_img img {
+    width: 200px;
+    height: auto;
+    margin-top: 0;
+  }
+
+  /* Responsive styles for page04 */
+  .page04 {
+    padding: 40px 20px;
+  }
+
+  .page04 h2 {
+    font-size: 36px;
+  }
+
+  .page04 p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .page04 iframe,
+  .page04 iframe[src] {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+}
